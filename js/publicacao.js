@@ -4,7 +4,7 @@ let arqCapa;
 let nomeCapa;
 
 $(document).ready(function () {
- 
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             listarNomesLivrosUsuarioAtual(addLivroSelect, user.email);
@@ -95,7 +95,7 @@ function addLivroSelect(nomeLivro) {
 }
 
 function exibirConfigLivroExistente(nomeLivro) {
-    
+
     $('#btnPublicar').val('Atualizar');
     $('#inputNomePublicacao').val(nomeLivro);
     $('#inputNomePublicacao').attr('readonly', 'true');
@@ -124,7 +124,15 @@ function exibirConfigLivroNovo() {
 function publicarLivro() {
     $('.carregamento').modal('show');
     let inputNomePublicacao = $('#inputNomePublicacao').val();
-    verificaExistenciaLivro(inputNomePublicacao, novoLivro, atualizarLivro);
+    if (!verificaInputs()) {
+        verificaExistenciaLivro(inputNomePublicacao, novoLivro, atualizarLivro);
+    }else{
+        alert('Nenhum capitulo adicionado');
+    }
+}
+
+function verificaInputs() {
+    return $('.caps').html() === '';
 }
 
 function verificaExistenciaLivro(nomeLivro, callback1, callback2) {
@@ -141,7 +149,7 @@ function verificaExistenciaLivro(nomeLivro, callback1, callback2) {
 }
 
 function novoLivro() {
-    
+
     let inputNomePublicacao = $('#inputNomePublicacao').val();
     let inputDescricao = $('#inputDescricao').val();
     let inputNomeCap = $('#inputNomeCap').val();
@@ -168,7 +176,6 @@ function novoLivro() {
         console.log(dadosLivro)
         // Envia dados para RealTime-Database (usuarios -> livros )
         attRTDBUsuariosLivro(snap.val().nick, inputNomePublicacao, inputNomeCap, dadosCap);
-
 
         // Enviar dados para o RealTime-Database (livros)
         addRTDBLivro(inputNomePublicacao, inputNomeCap, dadosLivro, dadosCap);
