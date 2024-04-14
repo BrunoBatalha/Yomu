@@ -1,14 +1,15 @@
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBCrh3y8uOq9NXTvRTm3rh9Y56MIFAAsuU",
-  authDomain: "yomu-f0f10.firebaseapp.com",
-  databaseURL: "https://yomu-f0f10.firebaseio.com",
-  projectId: "yomu-f0f10",
-  storageBucket: "yomu-f0f10.appspot.com",
-  messagingSenderId: "964471218983"
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+const config = {
+  apiKey: "AIzaSyClTCzWIGRA-_IpgVp2Sku7PnZC7JDpTbg",
+  authDomain: "yomu-btle.firebaseapp.com",
+  databaseURL: "https://yomu-btle-default-rtdb.firebaseio.com",
+  projectId: "yomu-btle",
+  storageBucket: "yomu-btle.appspot.com",
+  messagingSenderId: "806851651533",
+  appId: "1:806851651533:web:d33d799b23ee5c0f234684"
 };
 firebase.initializeApp(config);
-
 // TODO: VERIFICAR SE A CONEXÃO FOI BEM FEITA!
 
 const rootRef = firebase.database().ref();
